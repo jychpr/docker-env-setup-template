@@ -1,0 +1,15 @@
+services:
+  jupyter-lab:
+    build: .
+    ports:
+      - "8888:8888"
+    volumes:
+      #remember to change workdir name accoring to projects
+      - ./project-folder:/project-folder
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
